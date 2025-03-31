@@ -1,0 +1,8 @@
+registor: Alice 1000
+sell: Alice iPhone15 1000
+sell: Alice Book1 1000
+purchase: Book1
+show_items:
+1: iPhone15 1000 Alice
+Alice's purchased_items:
+1: Book1 1000

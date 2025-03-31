@@ -1,0 +1,2 @@
+registor: Alice 1000
+registor: Alice already exists

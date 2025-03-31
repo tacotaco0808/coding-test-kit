@@ -1,0 +1,3 @@
+registor: Alice 1000
+add_balance: Alice 1000 -> 2000
+show_balance: Alice's balance 2000

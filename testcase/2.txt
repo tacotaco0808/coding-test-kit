@@ -1,0 +1,1 @@
+registor: -1000 is illigal

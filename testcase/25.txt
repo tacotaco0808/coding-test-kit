@@ -1,0 +1,6 @@
+registor: Alice 1000
+sell: Alice iPhone15 1000
+sell: Alice Book1 1000
+show_items:
+1: iPhone15 1000 Alice
+2: Book1 1000 Alice

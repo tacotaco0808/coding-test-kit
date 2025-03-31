@@ -1,0 +1,2 @@
+registor: Alice 1000
+add_balance: Bob is not exists
