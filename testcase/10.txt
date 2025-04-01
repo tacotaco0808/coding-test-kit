@@ -1,3 +1,0 @@
-registor: Alice 1000
-deposit: Alice 1000 -> 2000
-show_balance: Alice's balance 2000

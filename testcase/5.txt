@@ -1,2 +1,0 @@
-registor: Alice 1000
-deposit: -1000 is illigal

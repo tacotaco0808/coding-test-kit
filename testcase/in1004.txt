@@ -1,0 +1,3 @@
+register: User1 0
+register: User2 0
+register: User1 is already registered

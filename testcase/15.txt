@@ -1,2 +1,0 @@
-registor: Alice 1000
-sell: Alice iPhone15 1000

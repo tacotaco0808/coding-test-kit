@@ -1,2 +1,0 @@
-registor: Alice 1000
-deposit: Alice 1000 -> 2000
