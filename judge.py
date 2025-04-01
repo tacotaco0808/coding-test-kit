@@ -6,7 +6,7 @@ from hashlib import sha256
 ENTRY_POINT = "setup.py" if Path("setup.py").exists() else "main.py"
 input_path = Path("./input")
 output_path = Path("./output")
-remove_targets = [file for file in output_path.glob("**\*.txt") if file.is_file()]
+remove_targets = [file for file in output_path.glob("*.txt") if file.is_file()]
 for target in remove_targets:
     target.unlink(True)
 output_path.mkdir(parents=True, exist_ok=True)
