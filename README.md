@@ -1,16 +1,16 @@
 # CUIショッピングサイト
+目次
+1. [仕様](#仕様)
+1. [基本機能](#基本機能)
+1. [応用機能](#応用機能)
 
 ## 仕様
 
-入力は標準入力から行われる。
-
-複数のエラーの場合は表記の上順から最初に該当するエラーを出力する。
-
-タイムスタンプの形式は `[YYYY-MM-DD]T[hh:mm:ss]` 形式である。
-
-例 `2025-03-05T12:00:00`
-
-入力ファイルの形式は以下のとおりである。
+* 入力は標準入力から受け取る。
+* エラーが複数発生した場合は、エラーテーブルの上にあるものを優先して1つだけ出力する。
+* タイムスタンプの形式は [YYYY-MM-DD]T[hh:mm:ss]。
+  * 例: 2025-03-05T12:00:00
+* 入力ファイルの形式は以下のとおり。
 
 ```
 N  // 行数
@@ -21,107 +21,97 @@ COMMAND_N
 ```
 
 ## 基本機能
-1. [ユーザ登録](###ユーザ登録)
-2. [残高確認](###残高確認)
+1. [トップ](#cuiショッピングサイト)
+1. [ユーザ登録](#ユーザ登録)
+1. [入金](#入金)
+1. [残高確認](#残高確認)
+1. [出品](#出品)
+1. [商品一覧表示](#商品一覧表示)
+1. [商品購入](#商品購入)
+1. [売上確認](#売上確認)
+1. [応用機能](#応用機能)
 
 ### ユーザ登録
 
-ユーザを登録する機能。
-
 **入力**
 
-`タイムスタンプ registor {UserName} {Balance}`
+`{timestamp} register {user_name} {balance}`
 
 **出力**
 
-`registor: {UserName} {Balance}`
+`register: {user_name} {balance}`
 
 **エラー**
 
-- ユーザが登録済み
-
-`registor: {UserName} はすでに登録されています`
-
-- 金額が0未満
-
-`registor: {Balance} 指定された金額は不正です`
+|条件|表示項目|
+|:--:|:--:|
+|ユーザがすでに登録済み|`register: {user_name} is already registered`|
+|金額が負の値|`register: {balance} is invalid`|
 
 ### 入金
 
-ユーザが入金する機能。
-
 **入力**
 
-`タイムスタンプ add_balance {UserName} {Balance}`
+`{timestamp} deposit {user_name} {amount}`
 
 **出力**
 
-`add_balance: {UserName} {OldBalance} -> {NewBalance}`
+`deposit: {user_name} {old_balance} -> {new_balance}`
 
 **エラー**
 
-- ユーザが存在しない
-
-`add_balance: {UserName} is not exists`
-
-- 金額が0未満
-
-`add_balance: {Balance} 指定された金額は不正です`
+|条件|表示項目|
+|:--:|:--:|
+|ユーザが存在しない|`deposit: {user_name} does not exist`|
+|金額が負の値|`deposit: {amount} is invalid`|
 
 ### 残高確認
 
-ユーザが残高確認する機能。
-
 **入力**
 
-`タイムスタンプ show_balance {UserName}`
+`{timestamp} show_balance {user_name}`
 
 **出力**
 
-`show_balance: {UserName} 残高 {Balance}`
+`show_balance: {user_name}'s balance {balance}`
 
 **エラー**
 
-- ユーザが存在しない
-
-`show_balance: {UserName} は存在しません`
+|条件|表示項目|
+|:--:|:--:|
+|ユーザが存在しない|`show_balance: {user_name} does not exist`|
 
 ### 出品
 
-ユーザが出品する機能。
-
 **入力**
 
-`タイムスタンプ sell {UserName} {ItemName} {Price}`
+`{timestamp} sell {user_name} {item_name} {price}`
 
 **出力**
 
-`sell: {UserName} が {ItemName} を {Price} で販売`
+`sell: {user_name} listed {item_name} for {price}`
 
 **エラー**
 
-- ユーザが存在しない
-
-`show_balance: {UserName} は存在しません`
-
-- 金額が0未満
-
-`show_balance: {Price} 指定された金額は不正です`
+|条件|表示項目|
+|:--:|:--:|
+|ユーザが存在しない|`sell: {user_name} does not exist`|
+|すでに商品が登録済み|`sell: {item_name} is already listed`|
+|金額が負の値|`sell: {price} is invalid`|
 
 ### 商品一覧表示
 
-商品一覧を出品されたタイムスタンプ順に表示する機能。何も出品されていない場合は１行目のみを表示する。すでに購入されている商品は表示しない。
-
 **入力**
 
-`タイムスタンプ show_items`
+`{timestamp} show_items`
 
 **出力**
 
 ```
 show_items:
-1: {ItemName} {Price} {Seller}
-2: {ItemName} {Price} {Seller}
+1: {item_name} {price} {seller}
+2: {item_name} {price} {seller}
+...
 ```
 
 **エラー**
@@ -130,122 +120,162 @@ show_items:
 
 ### 商品購入
 
-ユーザが商品を購入する機能。
-
 **入力**
 
-`タイムスタンプ purchase {UserName} {ItemName}`
+`{timestamp} purchase {user_name} {item_name}`
 
 **出力**
 
-`purchase: {ItemName} を購入`
+`purchase: {user_name} bought {item_name}`
 
 **エラー**
 
-- ユーザが存在しない
+|条件|表示項目|
+|:--:|:--:|
+|ユーザが存在しない|`purchase: {user_name} does not exist`|
+|商品が存在しない|`purchase: {item_name} does not exist`|
+|自分が出品した商品を購入しようとした|`purchase: {item_name} is your own listing`|
+|残高不足|`purchase: {user_name} does not have enough balance`|
 
-`purchase: {UserName} は存在しません`
+### 売上確認
 
-- 商品が存在しない
+**入力**
 
-`purchase: {ItemName} は存在しません`
+`{timestamp} show_sales {user_name}`
 
-- 自分が出品している商品を購入しようとした
+**出力**
 
-`purchase: {ItemName} は自分の商品です`
+`show_sales: {user_name}'s total sales {total_sales}`
 
-- 残高が不足している
+**エラー**
 
-`purchase: {UserName} の残高が不足しています`
+|条件|表示項目|
+|:--:|:--:|
+|ユーザが存在しない|`show_sales: {user_name} does not exist`|
 
 ## 応用機能
-
-### 出品済商品一覧表示
-
-ユーザが出品した商品の一覧表示機能。ユーザが何も出品していない場合は１枚目のみ表示する。
-
-**入力**
-
-`タイムスタンプ sell_items {UserName}`
-
-**出力**
-
-```
-sell_items:
-1: {ItemName} {Price}
-2: {ItemName} {Price}
-```
-
-**エラー**
-
-- ユーザが存在しない
-
-`sell_items: {UserName} は存在しません`
-
-### 購入済商品一覧表示
-
-ユーザの購入済み商品の一覧表示機能。
-
-**入力**
-
-`タイムスタンプ purchased_items {UserName}`
-
-**出力**
-
-```
-purchased_items:
-1: {ItemName} {Price}
-2: {ItemName} {Price}
-```
-
-**エラー**
-
-- ユーザが存在しない
-
-`purchased_items: {UserName} は存在しません`
-
-### 販売履歴表示
-
-ユーザが販売した（購入された）商品の履歴表示機能。
-
-**入力**
-
-`タイムスタンプ sold_items {UserName}`
-
-**出力**
-
-```
-sold_items:
-1: {ItemName} {Price}
-2: {ItemName} {Price}
-```
-
-**エラー**
-
-- ユーザが存在しない
-
-`sold_items: {UserName} は存在しません`
+1. [トップ](#cuiショッピングサイト)
+1. [基本機能](#基本機能)
+1. [入金履歴表示](#入金履歴表示)
+1. [出品履歴表示](#出品履歴表示)
+1. [価格変更](#価格変更)
+1. [出品取りやめ](#出品取りやめ)
+1. [購入履歴表示](#購入履歴表示)
+1. [商品検索](#商品検索)
 
 ### 入金履歴表示
 
-ユーザの入金履歴表示機能。
-
 **入力**
 
-`タイムスタンプ deposit_history {UserName}`
+`タイムスタンプ deposit_history {user_name}`
 
 **出力**
 
 ```
 deposit_history:
-1: {Balance}
-2: {Balance}
+1: {amount}
+2: {amount}
+...
 ```
 
 **エラー**
 
-- ユーザが存在しない
+|条件|表示項目|
+|:--:|:--:|
+|ユーザが存在しない|`deposit_history: {user_name} does not exist`|
 
-`deposit_history: {UserName} は存在しません`
+### 出品履歴表示
+
+**入力**
+
+`{timestamp} sold_items {user_name}`
+
+**出力**
+
+```
+sold_items:
+1: {item_name} {price}
+2: {item_name} {price}
+...
+```
+
+**エラー**
+
+|条件|表示項目|
+|:--:|:--:|
+|ユーザが存在しない|`sold_items: {user_name} does not exist`|
+
+### 価格変更
+
+**入力**
+
+`{timestamp} update_price {user_name} {item_name} {new_price}`
+
+**出力**
+
+`update_price: {user_name} changed {item_name} price to {new_price}`
+
+**エラー**
+
+|条件|表示項目|
+|:--:|:--:|
+|ユーザが存在しない|`update_price: {user_name} does not exist`|
+|商品が存在しない|`update_price: {item_name} does not exist`|
+|金額が負の値|`update_price: {amount} is invalid`|
 
 ### 出品取りやめ
+
+**入力**
+
+`{timestamp} cancel_listing {user_name} {item_name}`
+
+**出力**
+
+`cancel_listing: {user_name} canceled {item_name}`
+
+**エラー**
+
+|条件|表示項目|
+|:--:|:--:|
+|ユーザが存在しない|`cancel_listing: {user_name} does not exist`|
+|商品が存在しない|`cancel_listing: {item_name} does not exist`|
+
+### 購入履歴表示
+
+**入力**
+
+`{timestamp} purchased_items {user_name}`
+
+**出力**
+
+```
+purchased_items:
+1: {item_name} {price}
+2: {item_name} {price}
+...
+```
+
+**エラー**
+
+|条件|表示項目|
+|:--:|:--:|
+|ユーザが存在しない|`purchased_items: {user_name} does not exist`|
+
+### 商品検索
+
+**入力**
+
+`{timestamp} search_item {keyword}`
+
+**出力**
+
+```
+search_item:
+1: {item_name} {price} {seller}
+2: {item_name} {price} {seller}
+...
+```
+
+**エラー**
+
+なし

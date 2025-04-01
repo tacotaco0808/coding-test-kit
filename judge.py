@@ -3,7 +3,7 @@ from pathlib import Path
 from hashlib import sha256
 
 
-ENTRY_POINT = "main.py"
+ENTRY_POINT = "setup.py" if Path("setup.py").exists() else "main.py"
 input_path = Path("./input")
 output_path = Path("./output")
 output_path.mkdir(parents=True, exist_ok=True)
@@ -34,6 +34,7 @@ for input_file in input_path.glob("*.txt"):
                     "\nOutput >", o_line,
                     "\nExpect >", e_line
                 )
+                break
             line_no += 1
         result["NG"] += 1
     else:
