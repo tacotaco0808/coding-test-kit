@@ -28,5 +28,4 @@ user_1's purchased_items:
 user_2's purchased_items:
 purchased_items: user_3 does not exist
 search_item:
-1: item_2 100 user_2
-2: item_1 200 user_1
+1: item_1 200 user_1
