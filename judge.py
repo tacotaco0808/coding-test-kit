@@ -3,7 +3,7 @@ from pathlib import Path
 from hashlib import sha256
 
 
-ENTRY_POINT = "setup.py"
+ENTRY_POINT = "main.py"
 input_path = Path("./input")
 output_path = Path("./output")
 output_path.mkdir(parents=True, exist_ok=True)
