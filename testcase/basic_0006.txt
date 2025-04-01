@@ -1,0 +1,4 @@
+register: user_1 1000
+register: user_2 2000
+deposit: user_1 1000 -> 3000
+deposit: user_1 3000 -> 4000

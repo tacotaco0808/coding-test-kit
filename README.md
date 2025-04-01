@@ -172,7 +172,7 @@ show_items:
 **出力**
 
 ```
-deposit_history:
+{user_name}'s deposit_history:
 1: {amount}
 2: {amount}
 ...
@@ -193,7 +193,7 @@ deposit_history:
 **出力**
 
 ```
-sold_items:
+{user_name}'s sold_items:
 1: {item_name} {price}
 2: {item_name} {price}
 ...
@@ -222,6 +222,8 @@ sold_items:
 |ユーザが存在しない|`update_price: {user_name} does not exist`|
 |商品が存在しない|`update_price: {item_name} does not exist`|
 |金額が負の値|`update_price: {amount} is invalid`|
+|自分の商品でない|`update_price: {item_name} is not your own listing`|
+|すでに販売済み|`update_price: {item_name} sold`|
 
 ### 出品取りやめ
 
@@ -239,6 +241,8 @@ sold_items:
 |:--:|:--:|
 |ユーザが存在しない|`cancel_listing: {user_name} does not exist`|
 |商品が存在しない|`cancel_listing: {item_name} does not exist`|
+|自分の商品でない|`cancel_listing: {item_name} is not your own listing`|
+|すでに販売済み|`cancel_listing: {item_name} sold`|
 
 ### 購入履歴表示
 
@@ -249,7 +253,7 @@ sold_items:
 **出力**
 
 ```
-purchased_items:
+{user_name}'s purchased_items:
 1: {item_name} {price}
 2: {item_name} {price}
 ...

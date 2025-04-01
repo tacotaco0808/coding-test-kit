@@ -1,0 +1,2 @@
+register: user_1 1000
+register: -2000 is invalid

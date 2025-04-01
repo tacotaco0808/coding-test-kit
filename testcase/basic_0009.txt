@@ -1,0 +1,4 @@
+register: user_1 1000
+register: user_2 2000
+deposit: user_1 1000 -> 3000
+show_balance: user_3 does not exist

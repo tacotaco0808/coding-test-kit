@@ -1,0 +1,8 @@
+register: user_1 1000
+register: user_2 2000
+deposit: user_1 1000 -> 3000
+show_balance: user_1's balance 3000
+sell: user_2 listed item_1 for 100
+sell: item_1 is already listed
+show_items:
+1: item_1 100 user_2

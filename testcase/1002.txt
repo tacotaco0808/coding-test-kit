@@ -1,2 +1,0 @@
-register: User1 0
-register: User2 0

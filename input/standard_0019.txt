@@ -1,0 +1,20 @@
+19
+2025-04-01T10:00:00 register user_1 1000
+2025-04-01T10:05:00 register user_2 2000
+2025-04-01T10:07:00 deposit user_1 2000
+2025-04-01T10:08:00 show_balance user_1
+2025-04-01T10:12:00 sell user_2 item_2 100
+2025-04-01T10:15:00 sell user_1 item_1 200
+2025-04-01T10:23:00 show_items
+2025-04-01T10:27:00 purchase user_1 item_2
+2025-04-01T10:31:00 show_sales user_2
+2025-04-01T10:32:00 deposit_history user_1
+2025-04-01T10:37:00 sold_items user_1
+2025-04-01T10:45:00 sold_items user_2
+2025-04-01T10:47:00 sold_items user_3
+2025-04-01T11:00:00 update_price user_1 item_1 -2000
+2025-04-01T11:02:00 update_price user_1 item_2 -1000
+2025-04-01T11:07:00 update_price user_3 item_3 -1000
+2025-04-01T11:12:00 update_price user_2 item_2 1000
+2025-04-01T11:17:00 cancel_listing user_1 item2
+2025-04-01T11:23:00 cancel_listing user_3 item1

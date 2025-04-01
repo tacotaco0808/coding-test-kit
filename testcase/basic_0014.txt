@@ -1,0 +1,6 @@
+register: user_1 1000
+register: user_2 2000
+deposit: user_1 1000 -> 3000
+show_balance: user_1's balance 3000
+sell: user_3 does not exist
+sell: -200 is invalid

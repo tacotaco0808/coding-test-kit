@@ -1,0 +1,2 @@
+register: user_1 1000
+register: user_1 is already registered

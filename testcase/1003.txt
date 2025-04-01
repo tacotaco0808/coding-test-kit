@@ -1,3 +1,0 @@
-register: User1 0
-register: User2 0
-register: User3 5000

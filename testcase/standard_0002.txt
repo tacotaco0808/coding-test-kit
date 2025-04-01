@@ -1,0 +1,12 @@
+register: user_1 1000
+register: user_2 2000
+deposit: user_1 1000 -> 3000
+show_balance: user_1's balance 3000
+sell: user_2 listed item_2 for 100
+sell: user_1 listed item_1 for 200
+show_items:
+1: item_2 100 user_2
+2: item_1 200 user_1
+purchase: user_1 bought item_2
+show_sales: user_2's total sales 100
+user_2's deposit_hisoty:
