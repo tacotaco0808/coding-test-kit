@@ -3,6 +3,7 @@ from pathlib import Path
 from hashlib import sha256
 
 
+ENTRY_POINT = "setup.py"
 input_path = Path("./input")
 output_path = Path("./output")
 output_path.mkdir(parents=True, exist_ok=True)
@@ -16,7 +17,10 @@ result = {
 
 for input_file in input_path.glob("*.txt"):
     output_file = output_path.joinpath(input_file.name)
-    os.system(f"python main.py 0< {input_file.absolute()} > {output_file}")
+    if os.name == "nt":
+        os.system(f"python {ENTRY_POINT} 0< {input_file.absolute()} > {output_file}")
+    else:
+        os.system(f"cat {input_file.absolute()} | python3 {ENTRY_POINT} > {output_file}")
     o = output_file.read_text()
     e = testcase_path.joinpath(input_file.name).read_text()
     if sha256(o.encode()).hexdigest() != sha256(e.encode()).hexdigest():
@@ -28,8 +32,9 @@ for input_file in input_path.glob("*.txt"):
                     "===", output_file, "===",
                     "\nLineNo >", line_no,
                     "\nOutput >", o_line,
-                    "\nExcept >", e_line
+                    "\nExpect >", e_line
                 )
+            line_no += 1
         result["NG"] += 1
     else:
         result["OK"] += 1
