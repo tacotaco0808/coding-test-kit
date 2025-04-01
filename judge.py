@@ -32,7 +32,8 @@ for input_file in input_path.glob("*.txt"):
                     "===", output_file, "===",
                     "\nLineNo >", line_no,
                     "\nOutput >", o_line,
-                    "\nExpect >", e_line
+                    "\nExpect >", e_line,
+                    "\n"
                 )
                 break
             line_no += 1
@@ -41,7 +42,7 @@ for input_file in input_path.glob("*.txt"):
         result["OK"] += 1
 
 print(
-    "\n=== RESULT ===\n"
+    "=== RESULT ===\n"
     f"TOTAL: {TESTCASES_COUNT}\n"
     f"OK   : {result['OK']}\n"
     f"NG   : {result['NG']}\n"
