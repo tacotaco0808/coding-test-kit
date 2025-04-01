@@ -5,7 +5,7 @@
 2025-01-01T11:13:00 purchase Alice Book1
 2025-01-01T11:20:00 show_items
 2025-01-01T11:13:00 purchased_items Alice
-2025-01-01T11:00:00 add_balance Alice 1000
+2025-01-01T11:00:00 deposit Alice 1000
 2025-01-01T11:10:00 show_balance Alice
 2025-01-01T11:12:00 sell_items Alice
 2025-01-01T11:12:00 sold_items Alice

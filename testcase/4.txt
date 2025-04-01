@@ -1,2 +1,2 @@
 registor: Alice 1000
-add_balance: Alice 1000 -> 2000
+deposit: Alice 1000 -> 2000

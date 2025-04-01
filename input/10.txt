@@ -1,4 +1,4 @@
 3
 2025-01-01T10:00:00 registor Alice 1000
-2025-01-01T11:00:00 add_balance Alice 1000
+2025-01-01T11:00:00 deposit Alice 1000
 2025-01-01T11:10:00 show_balance Alice

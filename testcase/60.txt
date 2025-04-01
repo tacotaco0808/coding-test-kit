@@ -6,7 +6,7 @@ show_items:
 1: iPhone15 1000 Alice
 Alice's purchased_items:
 1: Book1 1000
-add_balance: Alice 1000 -> 2000
+deposit: Alice 1000 -> 2000
 show_balance: Alice's balance 2000
 Alice's sell_items:
 1: iPhone15 1000

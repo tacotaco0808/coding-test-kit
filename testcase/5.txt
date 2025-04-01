@@ -1,2 +1,2 @@
 registor: Alice 1000
-add_balance: -1000 is illigal
+deposit: -1000 is illigal
