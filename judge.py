@@ -7,9 +7,9 @@ ENTRY_POINT = "setup.py" if Path("setup.py").exists() else "main.py"
 input_path = Path("./input")
 output_path = Path("./output")
 output_path.mkdir(parents=True, exist_ok=True)
-testcase_path = Path("./testcase")
+expect_path = Path("./expect")
 
-TESTCASES_COUNT = len([_ for _ in testcase_path.glob("*.txt")])
+TESTCASES_COUNT = len([_ for _ in expect_path.glob("*.txt")])
 result = {
     "OK": 0,
     "NG": 0,
@@ -22,7 +22,7 @@ for input_file in input_path.glob("*.txt"):
     else:
         os.system(f"cat {input_file.absolute()} | python3 {ENTRY_POINT} > {output_file}")
     o = output_file.read_text()
-    e = testcase_path.joinpath(input_file.name).read_text()
+    e = expect_path.joinpath(input_file.name).read_text()
     if sha256(o.encode()).hexdigest() != sha256(e.encode()).hexdigest():
         print(output_file, "> NG")
         line_no = 1
