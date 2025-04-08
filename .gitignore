@@ -1,3 +1,5 @@
 mkfiles.py
-*setup.py
 /output
+build*
+**/*.spec
+_*.*
