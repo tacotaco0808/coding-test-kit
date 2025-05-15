@@ -19,11 +19,9 @@ class UserManager:
     def __init__(self):
         self.users: dict[str,User] = {}
 
-    def show_users(self):
-        # d登録されているユーザを表示する
-        for name, user in self.users.items():
-            print(f"{name}: {user.balance}")
-    
+    def get_users(self)-> list[User]:
+        return list(self.users.values())
+       
     def add_user(self,name: str,balance: int):
         # nameというキーでユーザを辞書へ登録する
         self.users[name] = User(name,balance)

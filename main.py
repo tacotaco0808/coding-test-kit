@@ -6,6 +6,7 @@ from handlers.deposit import handle_deposit
 from handlers.register import handle_register
 from handlers.sell import handle_sell
 from handlers.show_balance import handle_show_balance
+from handlers.show_items import handle_show_items
 
 
 def readlines() -> list[str]:
@@ -66,9 +67,11 @@ if __name__ == "__main__":
             price = int(args[2])
             output = handle_sell(timestamp, user_name, item_name, price, user_manager, item_manager)
             print(f"sell:{output}")
-
+        
+        elif command == "show_items":
+            output = handle_show_items(timestamp,item_manager)
+            print(f"show_items:{output}")
         else:
             print(f"Unknown command: {command}")
         
 
-    user_manager.show_users()

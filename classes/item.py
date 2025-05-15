@@ -8,10 +8,8 @@ class ItemManager:
     def __init__(self):
         self.items: dict[str, Item]={}
 
-    def show_items(self):
-        # d登録されているアイテムを表示する
-        for name, item in self.items.items():
-            print(f"{name}: {item.price} by {item.seller}")
+    def get_items(self)-> list[Item]:
+        return list(self.items.values())
 
     def add_item(self, item_name:str, price:int, seller:str):
         self.items[item_name] = Item(item_name,price,seller)
