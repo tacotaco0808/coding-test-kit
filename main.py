@@ -1,5 +1,8 @@
 import sys
 
+from classes.user import UserManager
+from handlers.register import handle_register
+
 
 def readlines() -> list[str]:
     """標準入力を受け付ける関数
@@ -24,5 +27,21 @@ def readlines() -> list[str]:
 
 
 if __name__ == "__main__":
+    
+    # ユーザを管理するインスタンス
+    user_manager = UserManager()
+    # for n,line in enumerate(readlines()):
+    #     print(f"{n}:{line}")
+    
     for line in readlines():
-        print(line)
+        # args以降はそれぞれのコマンドに応じて処理する
+        timestamp, command, *args = line.split()
+        if command == "register":
+            user_name = args[0]
+            balance = int(args[1])
+            output = handle_register(timestamp, user_name, balance, user_manager)
+            print(output)
+        else:
+            print(f"Unknown command: {command}")
+
+    user_manager.show_users()
