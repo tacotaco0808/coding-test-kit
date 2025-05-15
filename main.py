@@ -3,6 +3,7 @@ import sys
 from classes.user import UserManager
 from handlers.deposit import handle_deposit
 from handlers.register import handle_register
+from handlers.show_balance import handle_show_balance
 
 
 def readlines() -> list[str]:
@@ -49,6 +50,10 @@ if __name__ == "__main__":
             output = handle_deposit(timestamp, user_name, ammount, user_manager)
             print(f"deposit:{output}")
 
+        elif command == "show_balance":
+            user_name = args[0]
+            output = handle_show_balance(timestamp,user_name,user_manager)
+            print(f"show_balance:{output}")
         else:
             print(f"Unknown command: {command}")
         
