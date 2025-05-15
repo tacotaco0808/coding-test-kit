@@ -1,6 +1,7 @@
 import sys
 
 from classes.user import UserManager
+from handlers.deposit import handle_deposit
 from handlers.register import handle_register
 
 
@@ -40,8 +41,16 @@ if __name__ == "__main__":
             user_name = args[0]
             balance = int(args[1])
             output = handle_register(timestamp, user_name, balance, user_manager)
-            print(output)
+            print(f"register:{output}")
+
+        elif command == "deposit":
+            user_name = args[0]
+            ammount = int(args[1])
+            output = handle_deposit(timestamp, user_name, ammount, user_manager)
+            print(f"deposit:{output}")
+
         else:
             print(f"Unknown command: {command}")
+        
 
     user_manager.show_users()
