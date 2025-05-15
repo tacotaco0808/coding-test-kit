@@ -1,8 +1,10 @@
 import sys
 
+from classes.item import ItemManager
 from classes.user import UserManager
 from handlers.deposit import handle_deposit
 from handlers.register import handle_register
+from handlers.sell import handle_sell
 from handlers.show_balance import handle_show_balance
 
 
@@ -32,6 +34,9 @@ if __name__ == "__main__":
     
     # ユーザを管理するインスタンス
     user_manager = UserManager()
+    # アイテムを管理するインスタンス
+    item_manager = ItemManager()
+
     # for n,line in enumerate(readlines()):
     #     print(f"{n}:{line}")
     
@@ -54,6 +59,14 @@ if __name__ == "__main__":
             user_name = args[0]
             output = handle_show_balance(timestamp,user_name,user_manager)
             print(f"show_balance:{output}")
+        
+        elif command == "sell":
+            user_name = args[0]
+            item_name = args[1]
+            price = int(args[2])
+            output = handle_sell(timestamp, user_name, item_name, price, user_manager, item_manager)
+            print(f"sell:{output}")
+
         else:
             print(f"Unknown command: {command}")
         
