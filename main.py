@@ -3,6 +3,7 @@ import sys
 from classes.item import ItemManager
 from classes.user import UserManager
 from handlers.deposit import handle_deposit
+from handlers.purchase import handle_purchase
 from handlers.register import handle_register
 from handlers.sell import handle_sell
 from handlers.show_balance import handle_show_balance
@@ -71,6 +72,13 @@ if __name__ == "__main__":
         elif command == "show_items":
             output = handle_show_items(timestamp,item_manager)
             print(f"show_items:{output}")
+
+        elif command == "purchase":
+            user_name = args[0]
+            item_name = args[1]
+            output = handle_purchase(timestamp,user_name,item_name,user_manager,item_manager)
+            print(f"purchase: {output}")
+
         else:
             print(f"Unknown command: {command}")
         
