@@ -13,6 +13,10 @@ class ItemManager:
 
     def add_item(self, item_name:str, price:int, seller:str):
         self.items[item_name] = Item(item_name,price,seller)
+
+    def remove_item(self, item_name:str):
+        if item_name in self.items:
+            del self.items[item_name]
     
     def is_listed(self,item_name:str)-> bool:
         # アイテムが登録されているか確認する

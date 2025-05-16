@@ -3,6 +3,7 @@ from classes.user import UserManager
 
 
 def handle_purchase(timestamp: str,user_name:str,item_name:str,user_manager: UserManager,item_manager: ItemManager)->str:
+    # 例外処理
     if user_manager.is_registered(user_name) == False:
         return f"purchase: {user_name} does not exist"
     if item_manager.is_listed(item_name) == False:
@@ -11,5 +12,13 @@ def handle_purchase(timestamp: str,user_name:str,item_name:str,user_manager: Use
         return f"purchase: {item_name} is your own listing"
     if item_manager.items[item_name].price > user_manager.users[user_name].balance:
         return f"purchase: {user_name} does not have enough balance"
+    # 購入処理 購入者からアイテムの価格を引き、出品者にアイテムの価格を加算する。売り上げも加算する
+    user_manager.users[user_name].balance -= item_manager.items[item_name].price
+    seller_name = item_manager.items[item_name].seller
+    user_manager.users[seller_name].sales += item_manager.items[item_name].price
+    user_manager.users[seller_name].balance += item_manager.items[item_name].price
+    # アイテムを削除する
+    item_manager.remove_item(item_name)
+
 
     return f"purchase: {user_name} bought {item_name}"

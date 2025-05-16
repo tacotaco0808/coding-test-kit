@@ -6,6 +6,7 @@ class User:
     def __init__(self,name: str,balance: int):
         self.name = name
         self.balance = balance
+        self.sales = 0
 
     def deposit(self,amount: int):
         self.balance += amount

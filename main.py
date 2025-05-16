@@ -8,6 +8,7 @@ from handlers.register import handle_register
 from handlers.sell import handle_sell
 from handlers.show_balance import handle_show_balance
 from handlers.show_items import handle_show_items
+from handlers.show_sales import handle_show_sales
 
 
 def readlines() -> list[str]:
@@ -49,36 +50,40 @@ if __name__ == "__main__":
             user_name = args[0]
             balance = int(args[1])
             output = handle_register(timestamp, user_name, balance, user_manager)
-            print(f"register:{output}")
+            print(f"{output}")
 
         elif command == "deposit":
             user_name = args[0]
             ammount = int(args[1])
             output = handle_deposit(timestamp, user_name, ammount, user_manager)
-            print(f"deposit:{output}")
+            print(f"{output}")
 
         elif command == "show_balance":
             user_name = args[0]
             output = handle_show_balance(timestamp,user_name,user_manager)
-            print(f"show_balance:{output}")
+            print(f"{output}")
         
         elif command == "sell":
             user_name = args[0]
             item_name = args[1]
             price = int(args[2])
             output = handle_sell(timestamp, user_name, item_name, price, user_manager, item_manager)
-            print(f"sell:{output}")
+            print(f"{output}")
         
         elif command == "show_items":
             output = handle_show_items(timestamp,item_manager)
-            print(f"show_items:{output}")
+            print(f"{output}")
 
         elif command == "purchase":
             user_name = args[0]
             item_name = args[1]
             output = handle_purchase(timestamp,user_name,item_name,user_manager,item_manager)
-            print(f"purchase: {output}")
+            print(f"{output}")
 
+        elif command == "show_sales":
+            user_name = args[0]
+            output = handle_show_sales(timestamp,user_name,user_manager)
+            print(f"{output}")
         else:
             print(f"Unknown command: {command}")
         
