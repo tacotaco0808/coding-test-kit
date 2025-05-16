@@ -13,11 +13,12 @@ def handle_register(timestamp: str,user_name: str,balance: int, user_manager: Us
     """
 
     # 例外処理
+    if user_manager.is_registered(user_name):
+        return f"register: {user_name} is already registered"
     if balance <0:
         return f"register: {balance} is invalid"
 
-    if user_manager.is_registered(user_name):
-        return f"register: {user_name} is already registered"
+    
     
     
     #　正常にユーザーを登録する場合
