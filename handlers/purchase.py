@@ -17,6 +17,9 @@ def handle_purchase(timestamp: str,user_name:str,item_name:str,user_manager: Use
     seller_name = item_manager.items[item_name].seller
     user_manager.users[seller_name].sales += item_manager.items[item_name].price
     user_manager.users[seller_name].balance += item_manager.items[item_name].price
+    # 購入履歴に追加
+    price = item_manager.get_item_price(item_name)
+    user_manager.add_purchased_item_to_user(user_name,item_name,price)
     # アイテムを売れたことにする
     # item_manager.remove_item(item_name)　//商品が売れても商品一覧に表示されるかどうかで仕様が変わる
     item_manager.sold_item(item_name)

@@ -9,6 +9,7 @@ class User:
         self.sales = 0
         self.history : list[dict[str,int|str]] = []
         self.sold_items: list[dict[str,int|str]] = []
+        self.purchased_items: list[dict[str,str|int]] = []
 
     def deposit(self,amount: int):
         self.balance += amount
@@ -17,7 +18,7 @@ class User:
 
     def get_balance(self) -> int:
         return self.balance
-
+    
     def add_sold_item(self,item_name:str,price:int):
         self.sold_items.append(
             {
@@ -27,7 +28,14 @@ class User:
             }
         )
 
-
+    def add_purchased_item(self,item_name:str,price:int):
+        self.purchased_items.append(
+            {
+            "action": "purchased_item",
+            "item_name": item_name,
+            "amount": price
+            }
+        )
 class UserManager:
     # 「複数ユーザの管理」に対しての処理
     def __init__(self):
@@ -51,5 +59,11 @@ class UserManager:
     def add_sold_item_to_user(self,user_name:str,item_name:str,price: int):
         self.users[user_name].add_sold_item(item_name,price)
 
+    def add_purchased_item_to_user(self,user_name:str,item_name:str,price:int):
+        self.users[user_name].add_purchased_item(item_name,price)
+
     def get_sold_items(self,user_name:str ):
         return self.users[user_name].sold_items
+    
+    def get_purchased_item_from_user(self,user_name:str):
+        return self.users[user_name].purchased_items

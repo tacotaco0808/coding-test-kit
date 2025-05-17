@@ -5,6 +5,7 @@ from classes.user import UserManager
 from handlers.cancel_listing import handle_cancel_listing
 from handlers.deposit import handle_deposit
 from handlers.purchase import handle_purchase
+from handlers.purchased_items import handle_purchased_items
 from handlers.register import handle_register
 from handlers.sell import handle_sell
 from handlers.show_balance import handle_show_balance
@@ -112,6 +113,11 @@ if __name__ == "__main__":
             output = handle_cancel_listing(timestamp,user_name,item_name,user_manager,item_manager)
             print(f"{output}")
 
+        elif command == "purchased_items":
+            user_name = args[0]
+            output = handle_purchased_items(timestamp,user_name,user_manager)
+            print(f"{output}")
+        
         else:
             print(f"Unknown command: {command}")
         

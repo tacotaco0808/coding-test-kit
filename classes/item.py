@@ -10,6 +10,9 @@ class Item:
 
     def update_price(self,new_price:int):
         self.price = new_price
+    
+    def get_price(self):
+        return self.price
 
 class ItemManager:
     def __init__(self):
@@ -30,7 +33,9 @@ class ItemManager:
     def remove_item(self, item_name:str):
         if item_name in self.items:
             del self.items[item_name]
-    
+    def get_item_price(self,item_name:str):
+        return self.items[item_name].get_price()
+
     def is_listed(self,item_name:str)-> bool:
         # アイテムが登録されているか確認する
         # name in self.usersでキーが存在するか確認できる
