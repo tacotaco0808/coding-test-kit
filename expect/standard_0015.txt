@@ -16,7 +16,7 @@ user_1's sold_items:
 user_2's sold_items:
 1: item_2 100
 sold_items: user_3 does not exist
-update_price: item_1 is invalid
-update_price: item_2 is invalid
+update_price: -2000 is invalid
+update_price: -1000 is invalid
 update_price: user_3 does not exist
 update_price: item_2 sold
