@@ -15,4 +15,5 @@ def handle_sell(timestamp: str, user_name:str,item_name: str, price: int,user_ma
     
     # アイテムを登録する
     item_manager.add_item(item_name,price,user_name)
+    user_manager.add_sold_item_to_user(user_name,item_name,price)
     return f"sell: {user_name} listed {item_name} for {price}"
