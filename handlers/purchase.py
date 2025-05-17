@@ -17,8 +17,9 @@ def handle_purchase(timestamp: str,user_name:str,item_name:str,user_manager: Use
     seller_name = item_manager.items[item_name].seller
     user_manager.users[seller_name].sales += item_manager.items[item_name].price
     user_manager.users[seller_name].balance += item_manager.items[item_name].price
-    # アイテムを削除する
-    item_manager.remove_item(item_name)
+    # アイテムを売れたことにする
+    # item_manager.remove_item(item_name)　//商品が売れても商品一覧に表示されるかどうかで仕様が変わる
+    item_manager.sold_item(item_name)
 
 
     return f"purchase: {user_name} bought {item_name}"

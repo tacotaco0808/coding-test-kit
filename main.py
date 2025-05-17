@@ -11,6 +11,7 @@ from handlers.show_deposit_history import handle_show_deposit_history
 from handlers.show_items import handle_show_items
 from handlers.show_sales import handle_show_sales
 from handlers.show_sold_items import handle_show_sold_items
+from handlers.update_price import handle_update_price
 
 
 def readlines() -> list[str]:
@@ -97,7 +98,12 @@ if __name__ == "__main__":
             output = handle_show_sold_items(timestamp,user_name,user_manager)
             print(f"{output}")
         
-        
+        elif command == "update_price":
+            user_name = args[0]
+            item_name = args[1]
+            new_price = int(args[2])
+            output = handle_update_price(timestamp,user_name,item_name,new_price,user_manager,item_manager)
+            print(f"{output}")
         else:
             print(f"Unknown command: {command}")
         
