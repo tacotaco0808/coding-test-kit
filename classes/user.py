@@ -7,16 +7,19 @@ class User:
         self.name = name
         self.balance = balance
         self.sales = 0
+        self.history : list[dict[str,int|str]] = []
+
 
     def deposit(self,amount: int):
         self.balance += amount
+        self.history.append({"action":"deposit","amount":amount})
         return self.balance
 
     def get_balance(self) -> int:
         return self.balance
 
 class UserManager:
-    # 「複数ユーザの管理」 に対しての処理
+    # 「複数ユーザの管理」に対しての処理
     def __init__(self):
         self.users: dict[str,User] = {}
 
@@ -31,3 +34,6 @@ class UserManager:
         # ユーザが登録されているか確認する
         # name in self.usersでキーが存在するか確認できる
         return name in self.users
+    
+    def get_history(self,user_name: str):
+        return self.users[user_name].history
